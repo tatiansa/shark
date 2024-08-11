@@ -1,15 +1,13 @@
 {
-  "name": "airstack-frames-starter",
+  "name": "sharks",
   "version": "1.0.0",
   "description": "",
   "type": "module",
   "main": "api/index.tsx",
   "scripts": {
-    "dev": "npx @airstack/frog dev",
-    "build": "npx @airstack/frog vercel-build",
-    "deploy": "vercel --prod",
-    "deploy:preview": "vercel",
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "build": "npx @airstack/frog vercel-build",
+      "deploy": "vercel --prod",
+      "deploy:preview": "vercel"
   },
   "author": "",
   "license": "ISC",
