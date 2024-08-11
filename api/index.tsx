@@ -1,10 +1,5 @@
 import { Button, Frog } from "@airstack/frog";
-import { devtools } from "@airstack/frog/dev";
-import { serveStatic } from "@hono/node-server/serve-static";
 import { handle } from "@airstack/frog/vercel";
-import { config } from "dotenv";
-
-config();
 
 export const app = new Frog({
     apiKey: process.env.AIRSTACK_API_KEY as string,
@@ -73,6 +68,5 @@ app.frame('/smile', (c) => {
     });
 });
 
-devtools(app, { serveStatic });
 export const GET = handle(app);
 export const POST = handle(app);
