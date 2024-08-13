@@ -5,20 +5,28 @@ import { handle } from "@airstack/frog/vercel";
 
 export const app = new Frog({
     apiKey: process.env.AIRSTACK_API_KEY as string,
-    assetsPath: "/", // Указание директории для статических файлов
-    basePath: "/api", // Указание базового пути для API
+    assetsPath: "/", // Specify the directory for static files
+    basePath: "/api", // Specify the base path for the API
 });
 
-// Обработчик для основного маршрута
+// Single handler to toggle between images
 app.frame('/', (c) => {
     const { buttonValue } = c;
-    const imageSrc = buttonValue === "smile" ? `${app.assetsPath}img2.jpg` : `${app.assetsPath}img1.jpg`;
+    let imageSrc;
+    let button = null;
+
+    // Determine which image to show based on the current button value
+    if (buttonValue === "smile") {
+        imageSrc = `${app.assetsPath}img2.jpg`; // Show the second image
+        // No button under the second image
+    } else {
+        imageSrc = `${app.assetsPath}img1.jpg`; // Show the first image
+        button = <Button value="smile">Make me smile.</Button>; // Button to switch to img2
+    }
 
     return c.res({
-        image: imageSrc, // Передаем URL изображения
-        intents: [
-            <Button value="smile">Click to make Sharky smile</Button> // Кнопка для смены изображения
-        ]
+        image: imageSrc, // Return the appropriate image
+        intents: button ? [button] : [] // Render the button only if it's defined
     });
 });
 
