@@ -6,6 +6,7 @@
   "main": "api/index.tsx",
   "scripts": {
       "build": "npx @airstack/frog vercel-build",
+      "dev": "npx @airstack/frog dev",
       "deploy": "vercel --prod",
       "deploy:preview": "vercel"
   },
