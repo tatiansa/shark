@@ -21,7 +21,7 @@ app.frame('/', (c) => {
         // No button under the second image
     } else {
         imageSrc = `${app.assetsPath}img1.jpg`; // Show the first image
-        button = <Button value="smile">Make me smile.</Button>; // Button to switch to img2
+        button = <Button value="smile">Click to make Sharky smile :)</Button>; // Button to switch to img2
     }
 
     return c.res({
