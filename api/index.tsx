@@ -9,27 +9,21 @@ export const app = new Frog({
     basePath: "/api", // Specify the base path for the API
 });
 
-// Single handler to toggle between images
-app.frame('/', (c) => {
+app.frame("/", (c) => {
     const { buttonValue } = c;
-    let imageSrc;
-    let button = null;
-
-    // Determine which image to show based on the current button value
-    if (buttonValue === "smile") {
-        imageSrc = `${app.assetsPath}img2.jpg`; // Show the second image
-        // No button under the second image
-    } else {
-        imageSrc = `${app.assetsPath}img1.jpg`; // Show the first image
-        button = <Button value="smile">Click to make Sharky smile :)</Button>; // Button to switch to img2
-    }
+    const showSmile = buttonValue === "smile";
 
     return c.res({
-        image: imageSrc, // Return the appropriate image
-        intents: button ? [button] : [] // Render the button only if it's defined
+        image: showSmile
+            ? `${app.assetsPath}/img2.jpg`
+            : `${app.assetsPath}/img1.jpg`,
+        intents: showSmile
+            ? []
+            : [<Button value="smile">Click to make Sharky smile :)</Button>]
     });
 });
 
 devtools(app, { serveStatic });
+
 export const GET = handle(app);
 export const POST = handle(app);
